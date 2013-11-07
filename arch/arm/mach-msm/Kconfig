@@ -3042,6 +3042,12 @@ config KRAIT_REGULATOR
 	 regulators running in ganged mode inside the PMIC. Enable
 	 this option to support such configurations.
 
+config HAS_MACH_MEMUTILS
+	default n
+	bool "Motorola MSM memcpy enhancements"
+	help
+	Faster memcpy performance for Krait
+	
 config PVS_LEVEL_INTERFACE
 	bool "Expose PVS level information in SYSFS"
 	help
@@ -3052,7 +3058,13 @@ config SPEED_LEVEL_INTERFACE
         help
          Allow SPEED level to be shown into specific kernel apps
 
-endif
+config MSM_LIMITER
+	bool "MSM Frequency Limiter Driver"
+	depends on (LCD_NOTIFY || POWERSUSPEND || HAS_EARLYSUSPEND)
+	default n
+	help
+	  The MSM Frequency Limiter Driver controls max frequency limit for each CPU
+	  to desired value on suspend/resume
 
 config KERNEL_TEXT_MPU_PROT
         bool "Enable xpu protection of kernel r/o sections"
@@ -3066,5 +3078,5 @@ config MSM_LIMITER
 	bool "MSM Frequency Limiter Driver"
 	default y
 	help
-	  The MSM Frequency Limiter Driver controls max frequency limit for each CPU
-	  to desired value on suspend/resume
+	  Generic Alucard-hotplug cpu hotplug driver for ARM SOCs	  
+endif
