@@ -189,7 +189,7 @@ void __init lge_add_persist_ram_devices(void)
 
 void __init lge_reserve(void)
 {
-#ifdef CONFIG_KEXEC_HARDBOOT	
+#ifdef CONFIG_KEXEC_HARDBOOT
 	// Reserve space for hardboot page - just after ram_console,
 	// at the start of second memory bank
 	int ret;
@@ -209,8 +209,7 @@ void __init lge_reserve(void)
 	else
 		pr_err("Failed to reserve space for hardboot page at 0x%X!\n", start);
 #endif
-
-#if defined(CONFIG_ANDROID_PERSISTENT_RAM)
+#ifdef CONFIG_ANDROID_PERSISTENT_RAM
 	lge_add_persist_ram_devices();
 #endif
 }
